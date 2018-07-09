@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
     ArrayList<View> blankSpaces; //an array of the blank arrays which replaces the keys from the keyboard
     LinearLayout.LayoutParams keyboardRowParams; //LayoutParams for the keys in the keyboard's row
     LevelHelper levelHelper; //The level helper
-    TextView emojiTV,levelTV; //The text view where the emojis are and the text view where the level is
+    TextView emojiTV,levelTV,debugTV; //The text view where the emojis are and the text view where the level is
     Button endButton; //the button in the end screen
     Dialog endDialog; //the dialog displayed in the end
     SharedPreferences sp; //for saving the last level
@@ -44,6 +44,9 @@ public class MainActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        debugTV = findViewById(R.id.debugTV);
+        debugTV.setText("Version:" + BuildConfig.VERSION_NAME +" pre-alpha. itaizelther@gmail.com");
 
         sp = getSharedPreferences("data",0);
 
