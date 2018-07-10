@@ -6,6 +6,9 @@ import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.text.emoji.EmojiCompat;
+import android.support.text.emoji.bundled.BundledEmojiCompatConfig;
+import android.support.text.emoji.widget.EmojiTextView;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -34,7 +37,8 @@ public class MainActivity extends Activity {
     ArrayList<View> blankSpaces; //an array of the blank arrays which replaces the keys from the keyboard
     LinearLayout.LayoutParams keyboardRowParams; //LayoutParams for the keys in the keyboard's row
     LevelHelper levelHelper; //The level helper
-    TextView emojiTV,levelTV,debugTV; //The text view where the emojis are and the text view where the level is
+    TextView levelTV,debugTV; //The the text view where the level is and version number
+    EmojiTextView emojiTV; //the text view there emoji are
     Button endButton; //the button in the end screen
     Dialog endDialog; //the dialog displayed in the end
     SharedPreferences sp; //for saving the last level
@@ -43,6 +47,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
+        EmojiCompat.init(config);
+
         setContentView(R.layout.activity_main);
 
         debugTV = findViewById(R.id.debugTV);
