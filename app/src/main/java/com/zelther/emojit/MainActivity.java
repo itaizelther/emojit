@@ -6,9 +6,6 @@ import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.text.emoji.EmojiCompat;
-import android.support.text.emoji.bundled.BundledEmojiCompatConfig;
-import android.support.text.emoji.widget.EmojiTextView;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -16,14 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.vanniktech.emoji.EmojiManager;
+import com.vanniktech.emoji.EmojiTextView;
+import com.vanniktech.emoji.ios.IosEmojiProvider;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
 import java.util.Random;
 
 public class MainActivity extends Activity {
@@ -48,8 +45,7 @@ public class MainActivity extends Activity {
 
         super.onCreate(savedInstanceState);
 
-        EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
-        EmojiCompat.init(config);
+        EmojiManager.install(new IosEmojiProvider());
 
         setContentView(R.layout.activity_main);
 

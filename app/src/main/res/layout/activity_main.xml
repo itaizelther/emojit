@@ -27,7 +27,7 @@
         android:id="@+id/levelTV"/>
 
     <!-- The emoji riddle -->
-    <android.support.text.emoji.widget.EmojiTextView
+    <com.vanniktech.emoji.EmojiTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="83"
