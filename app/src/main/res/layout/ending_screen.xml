@@ -5,21 +5,23 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-    <TextView
+    <com.vanniktech.emoji.EmojiTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:text="Congratulations! 🎂"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:id="@+id/endTitleTV"/>
 
-    <TextView
+    <com.vanniktech.emoji.EmojiTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
+        android:id="@+id/endTV"
         android:text="You made it to the 🔝👌. More levels and features are coming 🔜 so don't you 😰! If you 🙏 to start over, just click the button below. 👇"/>
 
-    <Button
+    <com.vanniktech.emoji.EmojiButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

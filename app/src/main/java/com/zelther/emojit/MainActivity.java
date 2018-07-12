@@ -78,8 +78,13 @@ public class MainActivity extends Activity {
        endDialog = new Dialog(this);
        endDialog.setContentView(R.layout.ending_screen);
        endDialog.setCancelable(false);
+
+       ((EmojiTextView)endDialog.findViewById(R.id.endTV)).setText("You made it to the \uD83D\uDD1D\uD83D\uDC4C. More levels and features are coming \uD83D\uDD1C so don't you \uD83D\uDE30! If you \uD83D\uDE4F to start over, just click the button below. \uD83D\uDC47");
+        ((EmojiTextView)endDialog.findViewById(R.id.endTitleTV)).setText("Congratulations! \uD83C\uDF82");
+
        endButton = endDialog.findViewById(R.id.backEndDialog);
        endButton.setOnClickListener(new helpButtonsListener());
+       endButton.setText("\uD83D\uDD19");
 
        btnHelp = findViewById(R.id.btnHelp);
        btnHelp.setOnClickListener(new helpButtonsListener());
