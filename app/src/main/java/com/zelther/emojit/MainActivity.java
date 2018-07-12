@@ -2,6 +2,7 @@ package com.zelther.emojit;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -36,7 +37,7 @@ public class MainActivity extends Activity {
     LevelHelper levelHelper; //The level helper
     TextView levelTV,debugTV; //The the text view where the level is and version number
     EmojiTextView emojiTV; //the text view there emoji are
-    Button endButton; //the button in the end screen
+    Button endButton, btnSkip, btnHelp; //the button in the end screen, and the skip and help buttons
     Dialog endDialog; //the dialog displayed in the end
     SharedPreferences sp; //for saving the last level
 
@@ -78,7 +79,12 @@ public class MainActivity extends Activity {
        endDialog.setContentView(R.layout.ending_screen);
        endDialog.setCancelable(false);
        endButton = endDialog.findViewById(R.id.backEndDialog);
-       endButton.setOnClickListener(new endButtonListener());
+       endButton.setOnClickListener(new helpButtonsListener());
+
+       btnHelp = findViewById(R.id.btnHelp);
+       btnHelp.setOnClickListener(new helpButtonsListener());
+       btnSkip = findViewById(R.id.btnSkip);
+       btnSkip.setOnClickListener(new helpButtonsListener());
 
        resetALevel();
     }
@@ -258,13 +264,28 @@ public class MainActivity extends Activity {
     }
 
 
-    public class endButtonListener implements View.OnClickListener {
+    public class helpButtonsListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
-            levelHelper = new LevelHelper(1,getResources().openRawResource(R.raw.levels));
-            resetALevel();
-            endDialog.cancel();
+            if(v==endButton) {
+                levelHelper = new LevelHelper(1,getResources().openRawResource(R.raw.levels));
+                resetALevel();
+                endDialog.cancel();
+            } else if(v==btnHelp) {
+                Dialog helpDialog = new Dialog(MainActivity.this);
+                helpDialog.setContentView(R.layout.help_screen);
+                ((EmojiTextView)helpDialog.findViewById(R.id.helpTV)).setText("Welcome to Emojit! 👐 \nThis 🎮 is all about emojis 😃. \nIn the following levels you will see a bunch of emojis 📝," +
+                        "which has a meaning. You will have to 🤔 what it is! " +
+                                "\nHint: all the answers are names of 🎥 or 📺 shows. \nHave fun!");
+                helpDialog.show();
+            } else if(v==btnSkip) {
+                if(levelHelper.nextLevel())
+                    resetALevel();
+                else { //ending screen
+                    endDialog.show();
+                }
+            }
         }
     }
 }
