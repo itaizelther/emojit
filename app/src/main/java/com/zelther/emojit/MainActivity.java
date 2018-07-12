@@ -209,11 +209,11 @@ public class MainActivity extends Activity {
                     rearrangeAnswerRows();
 
                     if(ProjectUtiles.isListFull(answer)) { //check if the user submited whole answer and then checkes it.
-                        String attemptedWord = "";
+                        StringBuilder attemptedWord = new StringBuilder();
                         for(TextView b:answer) {
-                            attemptedWord += b.getText().toString();
+                            attemptedWord.append(b.getText().toString());
                         }
-                        if(attemptedWord.equals(levelHelper.getWord().replaceAll(" ",""))) {
+                        if(attemptedWord.toString().equals(levelHelper.getWord().replaceAll(" ",""))) {
                             if(levelHelper.nextLevel())
                                 resetALevel();
                             else { //ending screen
